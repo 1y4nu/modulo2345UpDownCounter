@@ -1,41 +1,10 @@
-|sevenSegment
-A => fa.IN1
-A => fa.IN1
-A => fa.IN1
-A => fb.IN1
-A => fb.IN1
-A => fd.IN1
-A => fe.IN1
-A => fe.IN1
-A => fa.IN1
-A => fb.IN1
-A => fb.IN1
-A => fb.IN1
-A => fc.IN1
-A => fd.IN1
-A => fg.IN1
-B => fa.IN1
-B => fb.IN1
-B => fb.IN1
-B => fc.IN1
-B => fa.IN1
-B => fa.IN1
-B => fa.IN1
-B => fe.IN1
-C => fa.IN0
-C => fa.IN0
-C => fa.IN0
-C => fa.IN0
-D => fa.IN1
-D => fa.IN1
-D => fa.IN1
-D => fa.IN1
-fa <= fa.DB_MAX_OUTPUT_PORT_TYPE
-fb <= fb.DB_MAX_OUTPUT_PORT_TYPE
-fc <= fc.DB_MAX_OUTPUT_PORT_TYPE
-fd <= fd.DB_MAX_OUTPUT_PORT_TYPE
-fe <= fe.DB_MAX_OUTPUT_PORT_TYPE
-ff <= ff.DB_MAX_OUTPUT_PORT_TYPE
-fg <= fg.DB_MAX_OUTPUT_PORT_TYPE
+|T_FF
+CLK => Qt.CLK
+T => Qt.ENA
+CL => Qt.IN0
+CL => Qt.ACLR
+PR => Qt.IN1
+Q <= Qt.DB_MAX_OUTPUT_PORT_TYPE
+Qn <= Qt.DB_MAX_OUTPUT_PORT_TYPE
 
 

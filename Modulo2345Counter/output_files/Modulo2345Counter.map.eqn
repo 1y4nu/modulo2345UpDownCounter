@@ -12,75 +12,53 @@
 -- Intel and sold by Intel or its authorized distributors.  Please
 -- refer to the applicable agreement for further details, at
 -- https://fpgasoftware.intel.com/eula.
---fa is fa
-fa = OUTPUT(A1L6);
+--Q is Q
+Q = OUTPUT(A1L8);
 
 
---fb is fb
-fb = OUTPUT(A1L8);
+--Qn is Qn
+Qn = OUTPUT(A1L9);
 
 
---fc is fc
-fc = OUTPUT(A1L10);
+--A1L11Q is Qt~_emulated
+--register power-up is low
+
+A1L11Q = DFFEAS(A1L10, CLK, !A1L6,  ,  ,  ,  ,  ,  );
 
 
---fd is fd
-fd = OUTPUT(A1L12);
+--PR is PR
+PR = INPUT();
 
 
---fe is fe
-fe = OUTPUT(A1L14);
+--CL is CL
+CL = INPUT();
 
 
---ff is ff
-ff = OUTPUT(A1L16);
+--A1L8 is Qt~2
+A1L8 = (CL & ((A1L11Q $ (A1L7)) # (!PR)));
 
 
---fg is fg
-fg = OUTPUT(A1L18);
+--T is T
+T = INPUT();
 
 
---A is A
-A = INPUT();
+--CLK is CLK
+CLK = INPUT();
 
 
---D is D
-D = INPUT();
+--A1L6 is Qt~0
+A1L6 = (!PR) # (!CL);
 
 
---C is C
-C = INPUT();
+--A1L10 is Qt~3
+A1L10 = A1L8 $ (T $ (A1L7));
 
 
---B is B
-B = INPUT();
+--A1L7 is Qt~1
+A1L7 = (CL & ((A1L7) # (!PR)));
 
 
---A1L6 is fa~0
-A1L6 = (D & (A & (C $ (B)))) # (!D & (!B & (A $ (C))));
-
-
---A1L8 is fb~0
-A1L8 = (B & ((A & (D)) # (!A & ((C))))) # (!B & (C & (D $ (A))));
-
-
---A1L10 is fc~0
-A1L10 = (C & (D & ((B) # (!A)))) # (!C & (!D & (B & !A)));
-
-
---A1L12 is fd~0
-A1L12 = (B & ((C & (A)) # (!C & (!A & D)))) # (!B & (!D & (C $ (A))));
-
-
---A1L14 is fe~0
-A1L14 = (B & (A & ((!D)))) # (!B & ((C & ((!D))) # (!C & (A))));
-
-
---A1L16 is ff~0
-A1L16 = (B & (((!C & !D)))) # (!B & (A & (C $ (!D))));
-
-
---A1L18 is fg~0
-A1L18 = (A & (!D & (C $ (!B)))) # (!A & (!B & (C $ (!D))));
+--A1L9 is Qt~2_wirecell
+A1L9 = !A1L8;
 
 
