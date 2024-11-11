@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Modulo2345Counter
-Mon Nov 11 17:13:50 2024
+Mon Nov 11 18:37:17 2024
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 
 
@@ -44,7 +44,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 11 17:13:50 2024           ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 11 18:37:17 2024           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Standard Edition ;
 ; Revision Name                      ; Modulo2345Counter                               ;
 ; Top-level Entity Name              ; T_FF                                            ;
@@ -270,7 +270,7 @@ The equations can be found in C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/mod
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
-    Info: Processing started: Mon Nov 11 17:13:43 2024
+    Info: Processing started: Mon Nov 11 18:37:10 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Modulo2345Counter -c Modulo2345Counter
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -283,6 +283,9 @@ Info (12021): Found 2 design units, including 1 entities, in source file t_ff.vh
 Info (12021): Found 2 design units, including 1 entities, in source file lab8toplevel.vhd
     Info (12022): Found design unit 1: TopLevel-logic_func File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/Lab8TopLevel.vhd Line: 11
     Info (12023): Found entity 1: TopLevel File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/Lab8TopLevel.vhd Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file eight_count.vhd
+    Info (12022): Found design unit 1: eight_count-logic_func File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/eight_count.vhd Line: 15
+    Info (12023): Found entity 1: eight_count File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/eight_count.vhd Line: 5
 Info (12127): Elaborating entity "T_FF" for the top level hierarchy
 Warning (10492): VHDL Process Statement warning at T_FF.vhd(27): signal "UD" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 27
 Warning (10492): VHDL Process Statement warning at T_FF.vhd(28): signal "Qt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 28
@@ -300,9 +303,9 @@ Info (21057): Implemented 10 device resources after synthesis - the final resour
     Info (21059): Implemented 2 output pins
     Info (21061): Implemented 2 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4815 megabytes
-    Info: Processing ended: Mon Nov 11 17:13:50 2024
+    Info: Peak virtual memory: 4809 megabytes
+    Info: Processing ended: Mon Nov 11 18:37:17 2024
     Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Total CPU time (on all processors): 00:00:16
 
 
