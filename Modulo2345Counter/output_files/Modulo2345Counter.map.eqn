@@ -1,0 +1,86 @@
+-- Copyright (C) 2020  Intel Corporation. All rights reserved.
+-- Your use of Intel Corporation's design tools, logic functions 
+-- and other software and tools, and any partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Intel Program License 
+-- Subscription Agreement, the Intel Quartus Prime License Agreement,
+-- the Intel FPGA IP License Agreement, or other applicable license
+-- agreement, including, without limitation, that your use is for
+-- the sole purpose of programming logic devices manufactured by
+-- Intel and sold by Intel or its authorized distributors.  Please
+-- refer to the applicable agreement for further details, at
+-- https://fpgasoftware.intel.com/eula.
+--fa is fa
+fa = OUTPUT(A1L6);
+
+
+--fb is fb
+fb = OUTPUT(A1L8);
+
+
+--fc is fc
+fc = OUTPUT(A1L10);
+
+
+--fd is fd
+fd = OUTPUT(A1L12);
+
+
+--fe is fe
+fe = OUTPUT(A1L14);
+
+
+--ff is ff
+ff = OUTPUT(A1L16);
+
+
+--fg is fg
+fg = OUTPUT(A1L18);
+
+
+--A is A
+A = INPUT();
+
+
+--D is D
+D = INPUT();
+
+
+--C is C
+C = INPUT();
+
+
+--B is B
+B = INPUT();
+
+
+--A1L6 is fa~0
+A1L6 = (D & (A & (C $ (B)))) # (!D & (!B & (A $ (C))));
+
+
+--A1L8 is fb~0
+A1L8 = (B & ((A & (D)) # (!A & ((C))))) # (!B & (C & (D $ (A))));
+
+
+--A1L10 is fc~0
+A1L10 = (C & (D & ((B) # (!A)))) # (!C & (!D & (B & !A)));
+
+
+--A1L12 is fd~0
+A1L12 = (B & ((C & (A)) # (!C & (!A & D)))) # (!B & (!D & (C $ (A))));
+
+
+--A1L14 is fe~0
+A1L14 = (B & (A & ((!D)))) # (!B & ((C & ((!D))) # (!C & (A))));
+
+
+--A1L16 is ff~0
+A1L16 = (B & (((!C & !D)))) # (!B & (A & (C $ (!D))));
+
+
+--A1L18 is fg~0
+A1L18 = (A & (!D & (C $ (!B)))) # (!A & (!B & (C $ (!D))));
+
+
