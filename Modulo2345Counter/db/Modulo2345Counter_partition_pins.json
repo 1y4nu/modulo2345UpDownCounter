@@ -12,7 +12,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "PR",
+					"name" : "En",
+					"strict" : false
+				},
+				{
+					"name" : "UD",
 					"strict" : false
 				},
 				{
@@ -21,6 +25,10 @@
 				},
 				{
 					"name" : "T",
+					"strict" : false
+				},
+				{
+					"name" : "PR",
 					"strict" : false
 				},
 				{

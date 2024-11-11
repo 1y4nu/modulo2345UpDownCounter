@@ -13,52 +13,52 @@
 -- refer to the applicable agreement for further details, at
 -- https://fpgasoftware.intel.com/eula.
 --Q is Q
-Q = OUTPUT(A1L8);
+Q = OUTPUT(A1L10);
 
 
 --Qn is Qn
 Qn = OUTPUT(A1L9);
 
 
---A1L11Q is Qt~_emulated
+--En is En
+En = INPUT();
+
+
+--Qt is Qt
 --register power-up is low
 
-A1L11Q = DFFEAS(A1L10, CLK, !A1L6,  ,  ,  ,  ,  ,  );
+Qt = DFFEAS(A1L8, CLK,  ,  ,  ,  ,  ,  ,  );
 
 
---PR is PR
-PR = INPUT();
+--UD is UD
+UD = INPUT();
+
+
+--A1L10 is Q~0
+A1L10 = (En & (Qt $ (UD)));
 
 
 --CL is CL
 CL = INPUT();
 
 
---A1L8 is Qt~2
-A1L8 = (CL & ((A1L11Q $ (A1L7)) # (!PR)));
-
-
 --T is T
 T = INPUT();
+
+
+--PR is PR
+PR = INPUT();
+
+
+--A1L8 is Qt~0
+A1L8 = (CL & ((Qt $ (T)) # (!PR)));
 
 
 --CLK is CLK
 CLK = INPUT();
 
 
---A1L6 is Qt~0
-A1L6 = (!PR) # (!CL);
-
-
---A1L10 is Qt~3
-A1L10 = A1L8 $ (T $ (A1L7));
-
-
---A1L7 is Qt~1
-A1L7 = (CL & ((A1L7) # (!PR)));
-
-
---A1L9 is Qt~2_wirecell
-A1L9 = !A1L8;
+--A1L9 is Qt~_wirecell
+A1L9 = !Qt;
 
 

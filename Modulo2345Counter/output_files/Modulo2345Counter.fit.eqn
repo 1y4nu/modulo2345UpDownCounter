@@ -12,73 +12,81 @@
 -- Intel and sold by Intel or its authorized distributors.  Please
 -- refer to the applicable agreement for further details, at
 -- https://fpgasoftware.intel.com/eula.
---A1L15Q is Qt~_emulated at FF_X72_Y72_N29
+--Qt is Qt at FF_X1_Y63_N17
 --register power-up is low
 
-A1L15Q = DFFEAS(A1L14, A1L4, !A1L11,  ,  ,  ,  ,  ,  );
+Qt = DFFEAS(A1L14, A1L4,  ,  ,  ,  ,  ,  ,  );
 
 
---A1L13 is Qt~2 at LCCOMB_X72_Y72_N2
-A1L13 = (A1L5 & ((A1L12 $ (A1L15Q)) # (!A1L7)));
+--A1L15 is Q~0 at LCCOMB_X1_Y66_N0
+A1L15 = (A1L7 & (A1L20 $ (Qt)));
 
 
---A1L11 is Qt~0 at LCCOMB_X72_Y72_N12
-A1L11 = (!A1L5) # (!A1L7);
+--A1L14 is Qt~0 at LCCOMB_X1_Y63_N16
+A1L14 = (A1L5 & ((A1L18 $ (Qt)) # (!A1L9)));
 
 
---A1L14 is Qt~3 at LCCOMB_X72_Y72_N28
-A1L14 = A1L12 $ (A1L18 $ (A1L13));
+--A1L16 is Q~output at IOOBUF_X0_Y67_N16
+A1L16 = OUTPUT_BUFFER.O(.I(A1L15), , , , , , , , , , , , , , , , , );
 
 
---A1L12 is Qt~1 at LCCOMB_X72_Y72_N18
-A1L12 = (A1L5 & ((A1L12) # (!A1L7)));
-
-
---A1L16 is Q~output at IOOBUF_X69_Y73_N23
-A1L16 = OUTPUT_BUFFER.O(.I(A1L13), , , , , , , , , , , , , , , , , );
-
-
---Q is Q at PIN_G18
+--Q is Q at PIN_G6
 Q = OUTPUT();
 
 
---A1L10 is Qn~output at IOOBUF_X69_Y73_N2
-A1L10 = OUTPUT_BUFFER.O(.I(!A1L13), , , , , , , , , , , , , , , , , );
+--A1L12 is Qn~output at IOOBUF_X0_Y64_N2
+A1L12 = OUTPUT_BUFFER.O(.I(!Qt), , , , , , , , , , , , , , , , , );
 
 
---Qn is Qn at PIN_J17
+--Qn is Qn at PIN_H6
 Qn = OUTPUT();
 
 
---A1L7 is PR~input at IOIBUF_X72_Y73_N8
-A1L7 = INPUT_BUFFER(.I(PR), );
+--A1L7 is En~input at IOIBUF_X0_Y66_N22
+A1L7 = INPUT_BUFFER(.I(En), );
 
 
---PR is PR at PIN_J19
-PR = INPUT();
+--En is En at PIN_F3
+En = INPUT();
 
 
---A1L5 is CL~input at IOIBUF_X72_Y73_N1
+--A1L20 is UD~input at IOIBUF_X0_Y66_N15
+A1L20 = INPUT_BUFFER(.I(UD), );
+
+
+--UD is UD at PIN_E3
+UD = INPUT();
+
+
+--A1L5 is CL~input at IOIBUF_X0_Y63_N22
 A1L5 = INPUT_BUFFER(.I(CL), );
 
 
---CL is CL at PIN_H19
+--CL is CL at PIN_G3
 CL = INPUT();
 
 
---A1L18 is T~input at IOIBUF_X72_Y73_N22
+--A1L18 is T~input at IOIBUF_X0_Y62_N15
 A1L18 = INPUT_BUFFER(.I(T), );
 
 
---T is T at PIN_G22
+--T is T at PIN_H4
 T = INPUT();
 
 
---A1L4 is CLK~input at IOIBUF_X72_Y73_N15
+--A1L9 is PR~input at IOIBUF_X0_Y62_N22
+A1L9 = INPUT_BUFFER(.I(PR), );
+
+
+--PR is PR at PIN_H3
+PR = INPUT();
+
+
+--A1L4 is CLK~input at IOIBUF_X0_Y63_N15
 A1L4 = INPUT_BUFFER(.I(CLK), );
 
 
---CLK is CLK at PIN_H21
+--CLK is CLK at PIN_G4
 CLK = INPUT();
 
 
