@@ -18,21 +18,22 @@ architecture logic_func of eight_count is
 
 	 component T_FF is 
     port (
-        En, UD, CLK, T, CL, PR : in std_logic;
+        UD, CLK, T, CL, PR : in std_logic;
         Q, Qn : out std_logic);
 	 end component;
 begin
 	stage0: T_FF PORT MAP (
-		En => EN,
+
 		UD => Ud,
 		CLK => CLk,
 		T => EN,
 		CL => Cl, 
 		PR => Pr,
-		Q => QoutNot(0),
-		Qn => (Qout(0)));
+		Q => Qout(0),
+		Qn => (QoutNot(0)));
+		
+		
 	stage1: T_FF PORT MAP (
-		En => EN,
 		UD => Ud,
 		CLK => CLk,
 		T =>  EN and Qout(0),
@@ -41,7 +42,7 @@ begin
 		Q => Qout(1),
 		Qn => (QoutNot(1)));
 	stage2: T_FF PORT MAP (
-		En => EN,
+		
 		UD => Ud,
 		CLK => CLk,
 		T =>  EN and Qout(0) and Qout(1),
@@ -50,7 +51,7 @@ begin
 		Q => Qout(2),
 		Qn => (QoutNot(2)));
 		
-		Q <= Qout;
+		Q <= QoutNot;
 
 
 end logic_func;

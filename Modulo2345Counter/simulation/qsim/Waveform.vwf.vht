@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "11/11/2024 18:41:04"
+-- Generated on "11/11/2024 20:17:48"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          T_FF
+-- Vhdl Test Bench(with test vectors) for design  :          eight_count
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,95 +29,76 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY T_FF_vhd_vec_tst IS
-END T_FF_vhd_vec_tst;
-ARCHITECTURE T_FF_arch OF T_FF_vhd_vec_tst IS
+ENTITY eight_count_vhd_vec_tst IS
+END eight_count_vhd_vec_tst;
+ARCHITECTURE eight_count_arch OF eight_count_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL CL : STD_LOGIC;
-SIGNAL CLK : STD_LOGIC;
-SIGNAL En : STD_LOGIC;
-SIGNAL PR : STD_LOGIC;
-SIGNAL Q : STD_LOGIC;
-SIGNAL Qn : STD_LOGIC;
-SIGNAL T : STD_LOGIC;
-SIGNAL UD : STD_LOGIC;
-COMPONENT T_FF
+SIGNAL Cl : STD_LOGIC;
+SIGNAL CLk : STD_LOGIC;
+SIGNAL EN : STD_LOGIC;
+SIGNAL Pr : STD_LOGIC;
+SIGNAL Q : STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL Ud : STD_LOGIC;
+COMPONENT eight_count
 	PORT (
-	CL : IN STD_LOGIC;
-	CLK : IN STD_LOGIC;
-	En : IN STD_LOGIC;
-	PR : IN STD_LOGIC;
-	Q : OUT STD_LOGIC;
-	Qn : OUT STD_LOGIC;
-	T : IN STD_LOGIC;
-	UD : IN STD_LOGIC
+	Cl : IN STD_LOGIC;
+	CLk : IN STD_LOGIC;
+	EN : IN STD_LOGIC;
+	Pr : IN STD_LOGIC;
+	Q : BUFFER STD_LOGIC_VECTOR(2 DOWNTO 0);
+	Ud : IN STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
-	i1 : T_FF
+	i1 : eight_count
 	PORT MAP (
 -- list connections between master ports and signals
-	CL => CL,
-	CLK => CLK,
-	En => En,
-	PR => PR,
+	Cl => Cl,
+	CLk => CLk,
+	EN => EN,
+	Pr => Pr,
 	Q => Q,
-	Qn => Qn,
-	T => T,
-	UD => UD
+	Ud => Ud
 	);
 
--- CL
-t_prcs_CL: PROCESS
+-- Cl
+t_prcs_Cl: PROCESS
 BEGIN
-	CL <= '1';
-	WAIT FOR 999000 ps;
-	CL <= '0';
+	Cl <= '1';
 WAIT;
-END PROCESS t_prcs_CL;
+END PROCESS t_prcs_Cl;
 
--- CLK
-t_prcs_CLK: PROCESS
+-- CLk
+t_prcs_CLk: PROCESS
 BEGIN
 LOOP
-	CLK <= '0';
+	CLk <= '0';
 	WAIT FOR 1000000 ps;
-	CLK <= '1';
+	CLk <= '1';
 	WAIT FOR 1000000 ps;
 	IF (NOW >= 32000000 ps) THEN WAIT; END IF;
 END LOOP;
-END PROCESS t_prcs_CLK;
+END PROCESS t_prcs_CLk;
 
--- En
-t_prcs_En: PROCESS
+-- EN
+t_prcs_EN: PROCESS
 BEGIN
-	En <= '1';
-	WAIT FOR 999000 ps;
-	En <= '0';
+	EN <= '1';
 WAIT;
-END PROCESS t_prcs_En;
+END PROCESS t_prcs_EN;
 
--- PR
-t_prcs_PR: PROCESS
+-- Pr
+t_prcs_Pr: PROCESS
 BEGIN
-	PR <= '1';
-	WAIT FOR 999000 ps;
-	PR <= '0';
+	Pr <= '1';
 WAIT;
-END PROCESS t_prcs_PR;
+END PROCESS t_prcs_Pr;
 
--- T
-t_prcs_T: PROCESS
+-- Ud
+t_prcs_Ud: PROCESS
 BEGIN
-	T <= '1';
+	Ud <= '0';
 WAIT;
-END PROCESS t_prcs_T;
-
--- UD
-t_prcs_UD: PROCESS
-BEGIN
-	UD <= '0';
-WAIT;
-END PROCESS t_prcs_UD;
-END T_FF_arch;
+END PROCESS t_prcs_Ud;
+END eight_count_arch;

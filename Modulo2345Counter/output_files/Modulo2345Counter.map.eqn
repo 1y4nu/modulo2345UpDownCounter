@@ -12,53 +12,73 @@
 -- Intel and sold by Intel or its authorized distributors.  Please
 -- refer to the applicable agreement for further details, at
 -- https://fpgasoftware.intel.com/eula.
---Q is Q
-Q = OUTPUT(A1L10);
+--Q[0] is Q[0]
+Q[0] = OUTPUT(B1_Qt);
 
 
---Qn is Qn
-Qn = OUTPUT(A1L9);
+--Q[1] is Q[1]
+Q[1] = OUTPUT(B2_Qt);
 
 
---En is En
-En = INPUT();
+--Q[2] is Q[2]
+Q[2] = OUTPUT(B3_Qt);
 
 
---Qt is Qt
+--B1_Qt is T_FF:stage0|Qt
 --register power-up is low
 
-Qt = DFFEAS(A1L8, CLK,  ,  ,  ,  ,  ,  ,  );
+B1_Qt = DFFEAS(B1L2, CLk,  ,  ,  ,  ,  ,  ,  );
 
 
---UD is UD
-UD = INPUT();
+--B2_Qt is T_FF:stage1|Qt
+--register power-up is low
+
+B2_Qt = DFFEAS(B2L3, CLk,  ,  ,  ,  ,  ,  ,  );
 
 
---A1L10 is Q~0
-A1L10 = (En & (Qt $ (UD)));
+--B3_Qt is T_FF:stage2|Qt
+--register power-up is low
+
+B3_Qt = DFFEAS(B3L2, CLk,  ,  ,  ,  ,  ,  ,  );
 
 
---CL is CL
-CL = INPUT();
+--Cl is Cl
+Cl = INPUT();
 
 
---T is T
-T = INPUT();
+--EN is EN
+EN = INPUT();
 
 
---PR is PR
-PR = INPUT();
+--Pr is Pr
+Pr = INPUT();
 
 
---A1L8 is Qt~0
-A1L8 = (CL & ((Qt $ (T)) # (!PR)));
+--B1L2 is T_FF:stage0|Qt~0
+B1L2 = (Cl & ((B1_Qt $ (EN)) # (!Pr)));
 
 
---CLK is CLK
-CLK = INPUT();
+--CLk is CLk
+CLk = INPUT();
 
 
---A1L9 is Qt~_wirecell
-A1L9 = !Qt;
+--Ud is Ud
+Ud = INPUT();
+
+
+--B2L2 is T_FF:stage1|Qt~0
+B2L2 = B2_Qt $ (((EN & (B1_Qt $ (Ud)))));
+
+
+--B2L3 is T_FF:stage1|Qt~1
+B2L3 = (Cl & ((B2L2) # (!Pr)));
+
+
+--A1L3 is comb~0
+A1L3 = (EN & ((B1_Qt & (B2_Qt & !Ud)) # (!B1_Qt & (!B2_Qt & Ud))));
+
+
+--B3L2 is T_FF:stage2|Qt~0
+B3L2 = (Cl & ((B3_Qt $ (A1L3)) # (!Pr)));
 
 

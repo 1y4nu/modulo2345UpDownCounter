@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Modulo2345Counter
-Mon Nov 11 18:37:17 2024
+Mon Nov 11 20:17:07 2024
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 
 
@@ -14,10 +14,11 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Post-Synthesis Netlist Statistics for Top Partition
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Equations
- 12. Analysis & Synthesis Messages
+  9. Port Connectivity Checks: "T_FF:stage2"
+ 10. Post-Synthesis Netlist Statistics for Top Partition
+ 11. Elapsed Time Per Partition
+ 12. Analysis & Synthesis Equations
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -44,15 +45,15 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 11 18:37:17 2024           ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 11 20:17:07 2024           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Standard Edition ;
 ; Revision Name                      ; Modulo2345Counter                               ;
-; Top-level Entity Name              ; T_FF                                            ;
+; Top-level Entity Name              ; eight_count                                     ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 2                                               ;
-;     Total combinational functions  ; 2                                               ;
-;     Dedicated logic registers      ; 1                                               ;
-; Total registers                    ; 1                                               ;
+; Total logic elements               ; 5                                               ;
+;     Total combinational functions  ; 5                                               ;
+;     Dedicated logic registers      ; 3                                               ;
+; Total registers                    ; 3                                               ;
 ; Total pins                         ; 8                                               ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -67,7 +68,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EP4CE115F29C7      ;                    ;
-; Top-level entity name                                            ; T_FF               ; Modulo2345Counter  ;
+; Top-level entity name                                            ; eight_count        ; Modulo2345Counter  ;
 ; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -164,54 +165,58 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                             ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                      ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------+---------+
-; T_FF.vhd                         ; yes             ; User VHDL File  ; C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                    ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                             ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+---------+
+; T_FF.vhd                         ; yes             ; User VHDL File  ; C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd        ;         ;
+; eight_count.vhd                  ; yes             ; User VHDL File  ; C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/eight_count.vhd ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Estimated Total logic elements              ; 2     ;
-;                                             ;       ;
-; Total combinational functions               ; 2     ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 1     ;
-;     -- 3 input functions                    ; 1     ;
-;     -- <=2 input functions                  ; 0     ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 2     ;
-;     -- arithmetic mode                      ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 1     ;
-;     -- Dedicated logic registers            ; 1     ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 8     ;
-;                                             ;       ;
-; Embedded Multiplier 9-bit elements          ; 0     ;
-;                                             ;       ;
-; Maximum fan-out node                        ; Qt    ;
-; Maximum fan-out                             ; 3     ;
-; Total fan-out                               ; 19    ;
-; Average fan-out                             ; 1.00  ;
-+---------------------------------------------+-------+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimated Total logic elements              ; 5              ;
+;                                             ;                ;
+; Total combinational functions               ; 5              ;
+; Logic element usage by number of LUT inputs ;                ;
+;     -- 4 input functions                    ; 4              ;
+;     -- 3 input functions                    ; 1              ;
+;     -- <=2 input functions                  ; 0              ;
+;                                             ;                ;
+; Logic elements by mode                      ;                ;
+;     -- normal mode                          ; 5              ;
+;     -- arithmetic mode                      ; 0              ;
+;                                             ;                ;
+; Total registers                             ; 3              ;
+;     -- Dedicated logic registers            ; 3              ;
+;     -- I/O registers                        ; 0              ;
+;                                             ;                ;
+; I/O pins                                    ; 8              ;
+;                                             ;                ;
+; Embedded Multiplier 9-bit elements          ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; T_FF:stage0|Qt ;
+; Maximum fan-out                             ; 4              ;
+; Total fan-out                               ; 36             ;
+; Average fan-out                             ; 1.50           ;
++---------------------------------------------+----------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                      ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; |T_FF                      ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 8    ; 0            ; |T_FF               ; T_FF        ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                           ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name      ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
+; |eight_count               ; 5 (1)               ; 3 (0)                     ; 0           ; 0            ; 0       ; 0         ; 8    ; 0            ; |eight_count             ; eight_count ; work         ;
+;    |T_FF:stage0|           ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eight_count|T_FF:stage0 ; T_FF        ; work         ;
+;    |T_FF:stage1|           ; 2 (2)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eight_count|T_FF:stage1 ; T_FF        ; work         ;
+;    |T_FF:stage2|           ; 1 (1)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eight_count|T_FF:stage2 ; T_FF        ; work         ;
++----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -220,7 +225,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1     ;
+; Total registers                              ; 3     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
@@ -230,22 +235,30 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "T_FF:stage2"                                                                        ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 8                           ;
-; cycloneiii_ff         ; 1                           ;
-;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 3                           ;
-;     normal            ; 3                           ;
-;         1 data inputs ; 1                           ;
+; cycloneiii_ff         ; 3                           ;
+;     plain             ; 3                           ;
+; cycloneiii_lcell_comb ; 5                           ;
+;     normal            ; 5                           ;
 ;         3 data inputs ; 1                           ;
-;         4 data inputs ; 1                           ;
+;         4 data inputs ; 4                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 0.90                        ;
+; Max LUT depth         ; 2.00                        ;
+; Average LUT depth     ; 1.54                        ;
 +-----------------------+-----------------------------+
 
 
@@ -270,7 +283,7 @@ The equations can be found in C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/mod
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Standard Edition
-    Info: Processing started: Mon Nov 11 18:37:10 2024
+    Info: Processing started: Mon Nov 11 20:17:00 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Modulo2345Counter -c Modulo2345Counter
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -286,26 +299,25 @@ Info (12021): Found 2 design units, including 1 entities, in source file lab8top
 Info (12021): Found 2 design units, including 1 entities, in source file eight_count.vhd
     Info (12022): Found design unit 1: eight_count-logic_func File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/eight_count.vhd Line: 15
     Info (12023): Found entity 1: eight_count File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/eight_count.vhd Line: 5
-Info (12127): Elaborating entity "T_FF" for the top level hierarchy
+Info (12127): Elaborating entity "eight_count" for the top level hierarchy
+Info (12128): Elaborating entity "T_FF" for hierarchy "T_FF:stage0" File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/eight_count.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at T_FF.vhd(27): signal "UD" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 27
 Warning (10492): VHDL Process Statement warning at T_FF.vhd(28): signal "Qt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 28
-Warning (10492): VHDL Process Statement warning at T_FF.vhd(28): signal "En" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 28
-Warning (10492): VHDL Process Statement warning at T_FF.vhd(29): signal "UD" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 29
-Warning (10492): VHDL Process Statement warning at T_FF.vhd(30): signal "Qt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 30
-Warning (10492): VHDL Process Statement warning at T_FF.vhd(30): signal "En" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 30
+Warning (10492): VHDL Process Statement warning at T_FF.vhd(30): signal "UD" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 30
+Warning (10492): VHDL Process Statement warning at T_FF.vhd(31): signal "Qt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 31
 Warning (10631): VHDL Process Statement warning at T_FF.vhd(14): inferring latch(es) for signal or variable "Q", which holds its previous value in one or more paths through the process File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 14
 Info (10041): Inferred latch for "Q" at T_FF.vhd(14) File: C:/Users/s9ykk/Desktop/ECE2215/ECE2215 Project/modulo2345UpDownCounter/Modulo2345Counter/T_FF.vhd Line: 14
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 10 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 6 input pins
-    Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 2 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4809 megabytes
-    Info: Processing ended: Mon Nov 11 18:37:17 2024
+Info (21057): Implemented 13 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 3 output pins
+    Info (21061): Implemented 5 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 4817 megabytes
+    Info: Processing ended: Mon Nov 11 20:17:07 2024
     Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:16
+    Info: Total CPU time (on all processors): 00:00:15
 
 

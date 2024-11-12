@@ -12,82 +12,106 @@
 -- Intel and sold by Intel or its authorized distributors.  Please
 -- refer to the applicable agreement for further details, at
 -- https://fpgasoftware.intel.com/eula.
---Qt is Qt at FF_X1_Y63_N17
+--C1_Qt is T_FF:stage0|Qt at FF_X1_Y69_N5
 --register power-up is low
 
-Qt = DFFEAS(A1L14, A1L4,  ,  ,  ,  ,  ,  ,  );
+C1_Qt = DFFEAS(C1L2, GLOBAL(A1L5),  ,  ,  ,  ,  ,  ,  );
 
 
---A1L15 is Q~0 at LCCOMB_X1_Y66_N0
-A1L15 = (A1L7 & (A1L20 $ (Qt)));
+--C2_Qt is T_FF:stage1|Qt at FF_X1_Y69_N19
+--register power-up is low
+
+C2_Qt = DFFEAS(C2L3, GLOBAL(A1L5),  ,  ,  ,  ,  ,  ,  );
 
 
---A1L14 is Qt~0 at LCCOMB_X1_Y63_N16
-A1L14 = (A1L5 & ((A1L18 $ (Qt)) # (!A1L9)));
+--C3_Qt is T_FF:stage2|Qt at FF_X1_Y69_N17
+--register power-up is low
+
+C3_Qt = DFFEAS(C3L2, GLOBAL(A1L5),  ,  ,  ,  ,  ,  ,  );
 
 
---A1L16 is Q~output at IOOBUF_X0_Y67_N16
-A1L16 = OUTPUT_BUFFER.O(.I(A1L15), , , , , , , , , , , , , , , , , );
+--C1L2 is T_FF:stage0|Qt~0 at LCCOMB_X1_Y69_N4
+C1L2 = (A1L6 & ((C1_Qt $ (A1L9)) # (!A1L11)));
 
 
---Q is Q at PIN_G6
-Q = OUTPUT();
+--C2L2 is T_FF:stage1|Qt~0 at LCCOMB_X1_Y69_N6
+C2L2 = C2_Qt $ (((A1L9 & (A1L23 $ (C1_Qt)))));
 
 
---A1L12 is Qn~output at IOOBUF_X0_Y64_N2
-A1L12 = OUTPUT_BUFFER.O(.I(!Qt), , , , , , , , , , , , , , , , , );
+--C2L3 is T_FF:stage1|Qt~1 at LCCOMB_X1_Y69_N18
+C2L3 = (A1L6 & ((C2L2) # (!A1L11)));
 
 
---Qn is Qn at PIN_H6
-Qn = OUTPUT();
+--A1L7 is comb~0 at LCCOMB_X1_Y69_N28
+A1L7 = (A1L9 & ((A1L23 & (!C1_Qt & !C2_Qt)) # (!A1L23 & (C1_Qt & C2_Qt))));
 
 
---A1L7 is En~input at IOIBUF_X0_Y66_N22
-A1L7 = INPUT_BUFFER(.I(En), );
+--C3L2 is T_FF:stage2|Qt~0 at LCCOMB_X1_Y69_N16
+C3L2 = (A1L6 & ((C3_Qt $ (A1L7)) # (!A1L11)));
 
 
---En is En at PIN_F3
-En = INPUT();
+--A1L14 is Q[0]~output at IOOBUF_X1_Y73_N16
+A1L14 = OUTPUT_BUFFER.O(.I(C1_Qt), , , , , , , , , , , , , , , , , );
 
 
---A1L20 is UD~input at IOIBUF_X0_Y66_N15
-A1L20 = INPUT_BUFFER(.I(UD), );
+--Q[0] is Q[0] at PIN_E5
+Q[0] = OUTPUT();
 
 
---UD is UD at PIN_E3
-UD = INPUT();
+--A1L16 is Q[1]~output at IOOBUF_X1_Y73_N23
+A1L16 = OUTPUT_BUFFER.O(.I(C2_Qt), , , , , , , , , , , , , , , , , );
 
 
---A1L5 is CL~input at IOIBUF_X0_Y63_N22
-A1L5 = INPUT_BUFFER(.I(CL), );
+--Q[1] is Q[1] at PIN_C3
+Q[1] = OUTPUT();
 
 
---CL is CL at PIN_G3
-CL = INPUT();
+--A1L18 is Q[2]~output at IOOBUF_X0_Y69_N9
+A1L18 = OUTPUT_BUFFER.O(.I(C3_Qt), , , , , , , , , , , , , , , , , );
 
 
---A1L18 is T~input at IOIBUF_X0_Y62_N15
-A1L18 = INPUT_BUFFER(.I(T), );
+--Q[2] is Q[2] at PIN_C2
+Q[2] = OUTPUT();
 
 
---T is T at PIN_H4
-T = INPUT();
+--A1L6 is Cl~input at IOIBUF_X0_Y68_N15
+A1L6 = INPUT_BUFFER(.I(Cl), );
 
 
---A1L9 is PR~input at IOIBUF_X0_Y62_N22
-A1L9 = INPUT_BUFFER(.I(PR), );
+--Cl is Cl at PIN_H7
+Cl = INPUT();
 
 
---PR is PR at PIN_H3
-PR = INPUT();
+--A1L9 is EN~input at IOIBUF_X0_Y68_N1
+A1L9 = INPUT_BUFFER(.I(EN), );
 
 
---A1L4 is CLK~input at IOIBUF_X0_Y63_N15
-A1L4 = INPUT_BUFFER(.I(CLK), );
+--EN is EN at PIN_D2
+EN = INPUT();
 
 
---CLK is CLK at PIN_G4
-CLK = INPUT();
+--A1L11 is Pr~input at IOIBUF_X1_Y73_N8
+A1L11 = INPUT_BUFFER(.I(Pr), );
+
+
+--Pr is Pr at PIN_E4
+Pr = INPUT();
+
+
+--A1L4 is CLk~input at IOIBUF_X0_Y36_N8
+A1L4 = INPUT_BUFFER(.I(CLk), );
+
+
+--CLk is CLk at PIN_J1
+CLk = INPUT();
+
+
+--A1L23 is Ud~input at IOIBUF_X0_Y68_N8
+A1L23 = INPUT_BUFFER(.I(Ud), );
+
+
+--Ud is Ud at PIN_D1
+Ud = INPUT();
 
 
 
@@ -98,5 +122,9 @@ CLK = INPUT();
 
 
 
+
+
+--A1L5 is CLk~inputclkctrl at CLKCTRL_G2
+A1L5 = cycloneive_clkctrl(.INCLK[0] = A1L4) WITH (clock_type = "Global Clock", ena_register_mode = "none");
 
 

@@ -4,35 +4,35 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "Q",
+					"name" : "Q[0]",
 					"strict" : false
 				},
 				{
-					"name" : "Qn",
+					"name" : "Q[1]",
 					"strict" : false
 				},
 				{
-					"name" : "En",
+					"name" : "Q[2]",
 					"strict" : false
 				},
 				{
-					"name" : "UD",
+					"name" : "Cl",
 					"strict" : false
 				},
 				{
-					"name" : "CL",
+					"name" : "EN",
 					"strict" : false
 				},
 				{
-					"name" : "T",
+					"name" : "Pr",
 					"strict" : false
 				},
 				{
-					"name" : "PR",
+					"name" : "CLk",
 					"strict" : false
 				},
 				{
-					"name" : "CLK",
+					"name" : "Ud",
 					"strict" : false
 				}
 			]

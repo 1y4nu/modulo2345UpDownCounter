@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Mon Nov 11 18:37:17 2024
+Analysis & Synthesis Status : Successful - Mon Nov 11 20:17:07 2024
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Standard Edition
 Revision Name : Modulo2345Counter
-Top-level Entity Name : T_FF
+Top-level Entity Name : eight_count
 Family : Cyclone IV E
-Total logic elements : 2
-    Total combinational functions : 2
-    Dedicated logic registers : 1
-Total registers : 1
+Total logic elements : 5
+    Total combinational functions : 5
+    Dedicated logic registers : 3
+Total registers : 3
 Total pins : 8
 Total virtual pins : 0
 Total memory bits : 0

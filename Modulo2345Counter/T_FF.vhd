@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity T_FF is 
     port (
-        En, UD, CLK, T, CL, PR : in std_logic;
+        UD, CLK, T, CL, PR : in std_logic;
         Q, Qn : out std_logic
     );
 end T_FF;
@@ -25,12 +25,13 @@ begin
 			end if;
 		
 			if (UD = '0') then
-				Q <= Qt and En;
+				Q <= Qt;
+				
 			elsif (UD = '1') then
-				Q <= not(Qt) and En;
+				Q <= not(Qt);
 			end if;
     
 	 end process;
+	 Qn <= Qt;
 	 
-	 Qn <= NOT(Qt);
 end logic_func;

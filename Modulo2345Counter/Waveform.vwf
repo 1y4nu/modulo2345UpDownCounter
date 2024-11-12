@@ -7,10 +7,10 @@
 vlib work
 vcom -work work Modulo2345Counter.vho
 vcom -work work Waveform.vwf.vht
-vsim -c -t 1ps -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.T_FF_vhd_vec_tst
+vsim -c -t 1ps -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.eight_count_vhd_vec_tst
 vcd file -direction Modulo2345Counter.msim.vcd
-vcd add -internal T_FF_vhd_vec_tst/*
-vcd add -internal T_FF_vhd_vec_tst/i1/*
+vcd add -internal eight_count_vhd_vec_tst/*
+vcd add -internal eight_count_vhd_vec_tst/i1/*
 proc simTimestamp {} {
     echo "Simulation time: $::now ps"
     if { [string equal running [runStatus]] } {
@@ -20,15 +20,18 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
+
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
 vcom -work work Modulo2345Counter.vho
 vcom -work work Waveform.vwf.vht
-vsim -novopt -c -t 1ps -sdfmax T_FF_vhd_vec_tst/i1=Modulo2345Counter_vhd.sdo -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.T_FF_vhd_vec_tst
+vsim -novopt -c -t 1ps -sdfmax eight_count_vhd_vec_tst/i1=Modulo2345Counter_vhd.sdo -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.eight_count_vhd_vec_tst
 vcd file -direction Modulo2345Counter.msim.vcd
-vcd add -internal T_FF_vhd_vec_tst/*
-vcd add -internal T_FF_vhd_vec_tst/i1/*
+vcd add -internal eight_count_vhd_vec_tst/*
+vcd add -internal eight_count_vhd_vec_tst/i1/*
 proc simTimestamp {} {
     echo "Simulation time: $::now ps"
     if { [string equal running [runStatus]] } {
@@ -38,6 +41,9 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
+
+
 </modelsim_script_timing>
 <hdl_lang>vhdl</hdl_lang>
 </simulation_settings>*/
@@ -76,7 +82,7 @@ HEADER
 	GRID_DUTY_CYCLE = 50;
 }
 
-SIGNAL("CL")
+SIGNAL("Cl")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -86,7 +92,7 @@ SIGNAL("CL")
 	PARENT = "";
 }
 
-SIGNAL("CLK")
+SIGNAL("CLk")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -96,7 +102,7 @@ SIGNAL("CLK")
 	PARENT = "";
 }
 
-SIGNAL("En")
+SIGNAL("EN")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -106,7 +112,7 @@ SIGNAL("En")
 	PARENT = "";
 }
 
-SIGNAL("PR")
+SIGNAL("Pr")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -119,24 +125,44 @@ SIGNAL("PR")
 SIGNAL("Q")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 3;
+	LSB_INDEX = 0;
 	DIRECTION = OUTPUT;
 	PARENT = "";
 }
 
-SIGNAL("Qn")
+SIGNAL("Q[2]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "";
+	PARENT = "Q";
 }
 
-SIGNAL("T")
+SIGNAL("Q[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "Q";
+}
+
+SIGNAL("Q[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "Q";
+}
+
+SIGNAL("Ud")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
@@ -146,27 +172,16 @@ SIGNAL("T")
 	PARENT = "";
 }
 
-SIGNAL("UD")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = INPUT;
-	PARENT = "";
-}
-
-TRANSITION_LIST("CL")
+TRANSITION_LIST("Cl")
 {
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 999.0;
-		LEVEL 0 FOR 31001.0;
+		LEVEL 1 FOR 32000.0;
 	}
 }
 
-TRANSITION_LIST("CLK")
+TRANSITION_LIST("CLk")
 {
 	NODE
 	{
@@ -180,47 +195,7 @@ TRANSITION_LIST("CLK")
 	}
 }
 
-TRANSITION_LIST("En")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 1 FOR 999.0;
-		LEVEL 0 FOR 31001.0;
-	}
-}
-
-TRANSITION_LIST("PR")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 1 FOR 999.0;
-		LEVEL 0 FOR 31001.0;
-	}
-}
-
-TRANSITION_LIST("Q")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 999.0;
-		LEVEL 0 FOR 31001.0;
-	}
-}
-
-TRANSITION_LIST("Qn")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 999.0;
-		LEVEL 0 FOR 31001.0;
-	}
-}
-
-TRANSITION_LIST("T")
+TRANSITION_LIST("EN")
 {
 	NODE
 	{
@@ -229,7 +204,46 @@ TRANSITION_LIST("T")
 	}
 }
 
-TRANSITION_LIST("UD")
+TRANSITION_LIST("Pr")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 32000.0;
+	}
+}
+
+TRANSITION_LIST("Q[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 999.0;
+		LEVEL 0 FOR 31001.0;
+	}
+}
+
+TRANSITION_LIST("Q[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 999.0;
+		LEVEL 0 FOR 31001.0;
+	}
+}
+
+TRANSITION_LIST("Q[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 999.0;
+		LEVEL 0 FOR 31001.0;
+	}
+}
+
+TRANSITION_LIST("Ud")
 {
 	NODE
 	{
@@ -240,7 +254,7 @@ TRANSITION_LIST("UD")
 
 DISPLAY_LINE
 {
-	CHANNEL = "CL";
+	CHANNEL = "Cl";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 0;
@@ -249,7 +263,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "CLK";
+	CHANNEL = "CLk";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 1;
@@ -258,7 +272,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "En";
+	CHANNEL = "EN";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 2;
@@ -267,7 +281,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "PR";
+	CHANNEL = "Pr";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 3;
@@ -281,32 +295,45 @@ DISPLAY_LINE
 	RADIX = Unsigned;
 	TREE_INDEX = 4;
 	TREE_LEVEL = 0;
+	CHILDREN = 5, 6, 7;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "Qn";
+	CHANNEL = "Q[2]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 5;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "T";
+	CHANNEL = "Q[1]";
 	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
+	RADIX = Unsigned;
 	TREE_INDEX = 6;
-	TREE_LEVEL = 0;
+	TREE_LEVEL = 1;
+	PARENT = 4;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "UD";
+	CHANNEL = "Q[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 7;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Ud";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 7;
+	TREE_INDEX = 8;
 	TREE_LEVEL = 0;
 }
 
