@@ -12,7 +12,7 @@ entity UpDownCounter is
     );
 end UpDownCounter;
 
-architecture Behavioral of UpDownCounter is
+architecture logic of UpDownCounter is
     signal Qt : STD_LOGIC_VECTOR(12 downto 0);
 	 signal clear : STD_LOGIC; -- Internal clear signal
 	 
@@ -175,4 +175,4 @@ begin
 
     Q <= Qt;
 
-end Behavioral;
+end logic;

@@ -12,7 +12,7 @@ entity T_FlipFlop is
     );
 end T_FlipFlop;
 
-architecture Behavioral of T_FlipFlop is
+architecture logic of T_FlipFlop is
     signal Qt : STD_LOGIC;
 begin
     process (clk, cl)
@@ -28,5 +28,5 @@ begin
         end if;
     end process;
     Q <= Qt;
-end Behavioral;
+end logic;
 
