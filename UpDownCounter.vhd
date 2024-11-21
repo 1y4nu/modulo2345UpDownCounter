@@ -30,7 +30,7 @@ architecture Behavioral of UpDownCounter is
 	 
 begin
 
-	clear <= not(Qt(0) and Qt(3) and Qt(5) and Qt(8) and Qt(11));
+	clear <= not(Qt(0) and Qt(3) and Qt(5) and Qt(8) and Qt(11)) and Cl;
 	
 
     stage0 : T_FlipFlop port map (
