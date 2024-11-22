@@ -15,6 +15,8 @@ end UpDownCounter;
 architecture logic of UpDownCounter is
     signal Qt : STD_LOGIC_VECTOR(12 downto 0);
 	 signal clear : STD_LOGIC; -- Internal clear signal
+	 signal load_2344 : STD_LOGIC_VECTOR(12 downto 0);
+	 signal load_signal : STD_LOGIC;
 	 
 	 
     component T_FlipFlop
@@ -28,7 +30,20 @@ architecture logic of UpDownCounter is
         );
     end component;
 	 
+	component sevenSegment
+	port(
+		A, B, C, D : in std_logic; --input
+		fa, fb, fc, fd, fe, ff, fg : out std_logic --output
+		);
+	end component;
+	 
 begin
+	
+	load_2344 <= "0100100101000" when Qt = "0000000000000" and UD = '1' else Load_Value;
+	
+	
+	load_signal <= '1' when (Qt = "0000000000000" and UD = '1') or Load = '1' else '0';
+	
 
 	clear <= not(Qt(0) and Qt(3) and Qt(5) and Qt(8) and Qt(11)) and Cl;
 	
@@ -37,8 +52,8 @@ begin
         T => '1',
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(0),
+		  Load => load_signal,
+		  Load_Value => load_2344(0),
         Q => Qt(0)
     );
     
@@ -46,8 +61,8 @@ begin
         T => (Qt(0) AND NOT UD) OR (NOT Qt(0) AND UD),
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(1),
+		  Load => load_signal,
+		  Load_Value => load_2344(1),
         Q => Qt(1)
     );
     
@@ -57,8 +72,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(2),
+		  Load => load_signal,
+		  Load_Value => load_2344(2),
         Q => Qt(2)
     );
     
@@ -68,8 +83,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(3),
+		  Load => load_signal,
+		  Load_Value => load_2344(3),
         Q => Qt(3)
     );
 	 
@@ -79,8 +94,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(4),
+		  Load => load_signal,
+		  Load_Value => load_2344(4),
         Q => Qt(4)
     );
 	 
@@ -90,8 +105,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(5),
+		  Load => load_signal,
+		  Load_Value => load_2344(5),
         Q => Qt(5)
     );
 	 
@@ -101,8 +116,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(6),
+		  Load => load_signal,
+		  Load_Value => load_2344(6),
         Q => Qt(6)
     );
 	 
@@ -112,8 +127,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(7),
+		  Load => load_signal,
+		  Load_Value => load_2344(7),
         Q => Qt(7)
     );
 	 
@@ -123,8 +138,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(8),
+		  Load => load_signal,
+		  Load_Value => load_2344(8),
         Q => Qt(8)
     );
 	 
@@ -134,8 +149,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(9),
+		  Load => load_signal,
+		  Load_Value => load_2344(9),
         Q => Qt(9)
     );
 	 
@@ -145,8 +160,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(10),
+		  Load => load_signal,
+		  Load_Value => load_2344(10),
         Q => Qt(10)
     );
 	 
@@ -156,8 +171,8 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(11),
+		  Load => load_signal,
+		  Load_Value => load_2344(11),
         Q => Qt(11)
     );
 	 
@@ -167,11 +182,11 @@ begin
 		  
         clk => Clk,
         cl => clear,
-		  Load => Load,
-		  Load_Value => Load_Value(12),
+		  Load => load_signal,
+		  Load_Value => load_2344(12),
         Q => Qt(12)
     );
-	 
+	 	 
 
     Q <= Qt;
 
