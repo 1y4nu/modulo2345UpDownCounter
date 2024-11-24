@@ -16,7 +16,7 @@ end T_FlipFlop;
 architecture logic of T_FlipFlop is
     signal Qt : STD_LOGIC;
 begin
-    process (clk, cl)
+    process (clk, cl, T, Load, Load_Value)
     begin
         if cl = '0' then
             Qt <= '0';

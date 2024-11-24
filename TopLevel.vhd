@@ -4,22 +4,25 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity TopLevel is
     Port (
+		  En : in STD_LOGIC;
         Clk : in STD_LOGIC;
         Cl : in STD_LOGIC;
         UD : in STD_LOGIC;      -- Up/Down control
 		  Load : in STD_LOGIC;
 		  Load_Value : in STD_LOGIC_VECTOR(12 downto 0);
         Switch : in STD_LOGIC;  -- Select base (0 for base 8, 1 for base 14)
-        SevenSeg0, SevenSeg1, SevenSeg2 : out STD_LOGIC_VECTOR(6 downto 0) -- Three 7-segment displays
+        SevenSeg0, SevenSeg1, SevenSeg2, SevenSeg3 : out STD_LOGIC_VECTOR(6 downto 0) -- Four 7-segment displays
     );
 end TopLevel;
 
 architecture logic of TopLevel is
     signal CounterOutput : STD_LOGIC_VECTOR(12 downto 0); -- Counter output
-    signal Digits : STD_LOGIC_VECTOR(11 downto 0);
+    signal Digits : STD_LOGIC_VECTOR(15 downto 0);
+
 
 	component UpDownCounter
 		 Port (
+			  En : in STD_LOGIC;
 			  Clk : in STD_LOGIC;
 			  Cl : in STD_LOGIC;
 			  UD : in STD_LOGIC;
@@ -33,7 +36,7 @@ architecture logic of TopLevel is
 		 Port (
 			  binaryInput : in STD_LOGIC_VECTOR(12 downto 0);
 			  base_switch : in STD_LOGIC;
-			  digits : out STD_LOGIC_VECTOR(11 downto 0)
+			  digits : out STD_LOGIC_VECTOR(15 downto 0)
 		 );
 	end component;
 	
@@ -45,10 +48,14 @@ architecture logic of TopLevel is
 	end component;
 	
 	
+	
 begin
+
+	
     -- Up/Down Counter
     U_Counter : UpDownCounter
         Port map (
+				En => En,
             Clk => Clk,
             Cl => Cl,
             UD => UD,
@@ -68,10 +75,10 @@ begin
     -- Seven-Segment Display for least significant digit
     U_SevenSeg0 : sevenSegment
         Port map (
-            A => Digits(3),
-            B => Digits(2),
-            C => Digits(1),
-            D => Digits(0),
+            A => Digits(0),
+            B => Digits(1),
+            C => Digits(2),
+            D => Digits(3),
             fa => SevenSeg0(0),
             fb => SevenSeg0(1),
             fc => SevenSeg0(2),
@@ -84,10 +91,10 @@ begin
     -- Seven-Segment Display for next digit
     U_SevenSeg1 : sevenSegment
         Port map (
-            A => Digits(7),
-            B => Digits(6),
-            C => Digits(5),
-            D => Digits(4),
+            A => Digits(4),
+            B => Digits(5),
+            C => Digits(6),
+            D => Digits(7),
             fa => SevenSeg1(0),
             fb => SevenSeg1(1),
             fc => SevenSeg1(2),
@@ -100,10 +107,10 @@ begin
     -- Seven-Segment Display for next digit
     U_SevenSeg2 : sevenSegment
         Port map (
-            A => Digits(11),
-            B => Digits(10),
-            C => Digits(9),
-            D => Digits(8),
+            A => Digits(8),
+            B => Digits(9),
+            C => Digits(10),
+            D => Digits(11),
             fa => SevenSeg2(0),
             fb => SevenSeg2(1),
             fc => SevenSeg2(2),
@@ -111,6 +118,22 @@ begin
             fe => SevenSeg2(4),
             ff => SevenSeg2(5),
             fg => SevenSeg2(6)
+        );
+		  
+	-- Seven-Segment Display for next digit
+    U_SevenSeg3 : sevenSegment
+        Port map (
+            A => Digits(12),
+            B => Digits(13),
+            C => Digits(14),
+            D => Digits(15),
+            fa => SevenSeg3(0),
+            fb => SevenSeg3(1),
+            fc => SevenSeg3(2),
+            fd => SevenSeg3(3),
+            fe => SevenSeg3(4),
+            ff => SevenSeg3(5),
+            fg => SevenSeg3(6)
         );
 
 end logic;
