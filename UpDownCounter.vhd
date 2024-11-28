@@ -33,12 +33,6 @@ architecture logic of UpDownCounter is
         );
     end component;
 	 
-	 component sevenSegment is
-	port(
-		A, B, C, D : in std_logic; --input
-		fa, fb, fc, fd, fe, ff, fg : out std_logic --output
-		);
-	end component;
 	 
 	component clk_gen_1_output is
 		  generic( n  : integer := 25000;
