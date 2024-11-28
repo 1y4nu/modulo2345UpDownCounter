@@ -60,9 +60,9 @@ begin
 
 	Load_LED <= Load_Value;
 
-	do_not_load <= '1' when (Load_Value > "0100100101000") else Load;
+	do_not_load <= '1' when (Load_Value > "1011111111000") else Load;
 		
-	Warning <= '1' when (Load_Value > "0100100101000") else '0';
+	Warning <= '1' when (Load_Value > "1011111111000") else '0';
 	
     -- Up/Down Counter
     U_Counter : UpDownCounter

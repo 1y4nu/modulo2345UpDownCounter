@@ -49,13 +49,13 @@ architecture logic of UpDownCounter is
 	 
 begin
 	
-	load_2344 <= "0100100101000" when Qt = "0000000000000" and UD = '1' else Load_Value;
+	load_2344 <= "1011111111000" when Qt = "0000000000000" and UD = '1' else Load_Value;
 	
 	
 	load_signal <= '0' when (Qt = "0000000000000" and UD = '1') or Load = '0' else '1';
 	
 
-	clear <= not(Qt(0) and Qt(3) and Qt(5) and Qt(8) and Qt(11)) and Cl;
+	clear <= not(Qt(0) and Qt(3) and Qt(4) and Qt(4) and Qt(6) and Qt(7) and Qt(8) and Qt(9) and Qt(10) and Qt(12)) and Cl;
 	
 
 	
