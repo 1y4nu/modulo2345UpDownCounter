@@ -42,7 +42,7 @@ architecture logic of UpDownCounter is
 	 
 	component clk_gen_1_output is
 		  generic( n  : integer := 25000;
-					  n1 : integer := 2000);  
+					  n1 : integer := 500);  
 		  port( Clock : in  std_logic;
 				  c_out : out std_logic );
 	end component;
@@ -52,7 +52,7 @@ begin
 	load_2344 <= "0100100101000" when Qt = "0000000000000" and UD = '1' else Load_Value;
 	
 	
-	load_signal <= '1' when (Qt = "0000000000000" and UD = '1') or Load = '1' else '0';
+	load_signal <= '0' when (Qt = "0000000000000" and UD = '1') or Load = '0' else '1';
 	
 
 	clear <= not(Qt(0) and Qt(3) and Qt(5) and Qt(8) and Qt(11)) and Cl;
@@ -67,7 +67,7 @@ begin
 	
     stage0 : T_FlipFlop port map (
         T => '1' and En,
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(0),
@@ -76,7 +76,7 @@ begin
     
     stage1 : T_FlipFlop port map (
         T => ((Qt(0) AND NOT UD) OR (NOT Qt(0) AND UD)) and En,
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(1),
@@ -87,7 +87,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(2),
@@ -98,7 +98,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(3),
@@ -109,7 +109,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(4),
@@ -120,7 +120,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(5),
@@ -131,7 +131,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND Qt(5) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND NOT(Qt(5)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(6),
@@ -142,7 +142,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND Qt(5) AND Qt(6) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND NOT(Qt(5)) AND NOT(Qt(6)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(7),
@@ -153,7 +153,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND Qt(5) AND Qt(6) AND Qt(7) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND NOT(Qt(5)) AND NOT(Qt(6)) AND NOT(Qt(7)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(8),
@@ -164,7 +164,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND Qt(5) AND Qt(6) AND Qt(7) AND Qt(8) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND NOT(Qt(5)) AND NOT(Qt(6)) AND NOT(Qt(7)) AND NOT(Qt(8)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(9),
@@ -175,7 +175,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND Qt(5) AND Qt(6) AND Qt(7) AND Qt(8) AND Qt(9) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND NOT(Qt(5)) AND NOT(Qt(6)) AND NOT(Qt(7)) AND NOT(Qt(8)) AND NOT(Qt(9)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(10),
@@ -186,7 +186,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND Qt(5) AND Qt(6) AND Qt(7) AND Qt(8) AND Qt(9) AND Qt(10) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND NOT(Qt(5)) AND NOT(Qt(6)) AND NOT(Qt(7)) AND NOT(Qt(8)) AND NOT(Qt(9)) AND NOT(Qt(10)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(11),
@@ -197,7 +197,7 @@ begin
         T => ((Qt(0) AND Qt(1) AND Qt(2) AND Qt(3) AND Qt(4) AND Qt(5) AND Qt(6) AND Qt(7) AND Qt(8) AND Qt(9) AND Qt(10) AND Qt(11) AND NOT(UD)) OR 
 		  (NOT(Qt(0)) AND NOT(Qt(1)) AND NOT(Qt(2)) AND NOT(Qt(3)) AND NOT(Qt(4)) AND NOT(Qt(5)) AND NOT(Qt(6)) AND NOT(Qt(7)) AND NOT(Qt(8)) AND NOT(Qt(9)) AND NOT(Qt(10)) AND NOT(Qt(11)) AND UD)) and En,
 		  
-        clk => Clk,
+        clk => clockIn,
         cl => clear,
 		  Load => load_signal,
 		  Load_Value => load_2344(12),

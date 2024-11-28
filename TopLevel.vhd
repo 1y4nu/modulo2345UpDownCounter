@@ -10,6 +10,7 @@ entity TopLevel is
         UD : in STD_LOGIC;      -- Up/Down control
 		  Load : in STD_LOGIC;
 		  Load_Value : in STD_LOGIC_VECTOR(12 downto 0);
+		  Load_LED : out STD_LOGIC_VECTOR(12 downto 0);
         Switch : in STD_LOGIC;  -- Select base (0 for base 8, 1 for base 14)
         SevenSeg0, SevenSeg1, SevenSeg2, SevenSeg3 : out STD_LOGIC_VECTOR(6 downto 0) -- Four 7-segment displays
     );
@@ -51,6 +52,8 @@ architecture logic of TopLevel is
 	
 begin
 
+
+	Load_LED <= Load_Value;
 	
     -- Up/Down Counter
     U_Counter : UpDownCounter
