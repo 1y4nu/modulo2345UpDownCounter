@@ -11,6 +11,7 @@ entity TopLevel is
 		  Load : in STD_LOGIC;
 		  Load_Value : in STD_LOGIC_VECTOR(12 downto 0);
 		  Load_LED : out STD_LOGIC_VECTOR(12 downto 0);
+		  Warning : out STD_LOGIC;
         Switch : in STD_LOGIC;  -- Select base (0 for base 8, 1 for base 14)
         SevenSeg0, SevenSeg1, SevenSeg2, SevenSeg3 : out STD_LOGIC_VECTOR(6 downto 0) -- Four 7-segment displays
     );
@@ -19,6 +20,7 @@ end TopLevel;
 architecture logic of TopLevel is
     signal CounterOutput : STD_LOGIC_VECTOR(12 downto 0); -- Counter output
     signal Digits : STD_LOGIC_VECTOR(15 downto 0);
+	 signal do_not_load : STD_LOGIC;
 
 
 	component UpDownCounter
@@ -54,6 +56,11 @@ begin
 
 
 	Load_LED <= Load_Value;
+
+	
+	do_not_load <= '1' when (Load_Value > "0100100101000") else Load;
+		
+	Warning <= '1' when (Load_Value > "0100100101000") else '0';
 	
     -- Up/Down Counter
     U_Counter : UpDownCounter
@@ -62,7 +69,7 @@ begin
             Clk => Clk,
             Cl => Cl,
             UD => UD,
-            Load => Load,
+            Load => do_not_load,
             Load_Value => Load_Value,
             Q => CounterOutput
         );
