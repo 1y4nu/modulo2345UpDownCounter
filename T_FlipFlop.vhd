@@ -21,7 +21,7 @@ begin
         if cl = '0' then
             Qt <= '0';
         elsif rising_edge(clk) then
-            if Load = '1' then
+            if Load = '0' then
                 Qt <= Load_Value;
             elsif T = '1' then
                 Qt <= not Qt;
