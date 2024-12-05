@@ -33,4 +33,4 @@ This counter has been written in VHDL with its primary function being able to co
 - A switch that can change the radix view (8 or 14) on the seven segment displays.
 - A warning signal that lights up and prevents a value greater than 2344 from being loaded in.
 - Green LEDs that represent the lowest significant bit of the counting value being displayed on the 4 seven segment displays.
-- An Enable switch that can be used to start and stop counting.
+- An enable switch that can be used to start and stop counting.
