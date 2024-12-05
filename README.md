@@ -25,7 +25,8 @@
 ─██████████████─██████████████─────────██████─██████████████─
 ───────────────────────────────────────────────────────────── 
 ![alt text](https://github.com/1y4nu/modulo2345UpDownCounter/blob/main/images/fpga.jpg?raw=true)
-**Cyclone IV Altera DE2-115 Development and Education Board**
+-**Cyclone IV Altera DE2-115 Development and Education Board**
+
 This counter has been written in VHDL with its primary function being able to count up and down in radix 8 from 0 to 2344 in radix 14. Its other features include:
 - A load button that loads in a value in binary using 15 switches.
 - An instantiated clock generator.
